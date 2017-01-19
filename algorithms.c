@@ -60,28 +60,32 @@ void printArray(int array[], int arrayLength) {
   printf("]");
 }
 
+void printStatus(char message[]) {
+  printf(message);
+  printf("\n");
+}
+
 void main(void)
 {
-
   unsigned int i = 0;
 
   int randomArray[300];
   int arrayLength = 300;
 
-  /* We use the DIV register to get a random initial seed */
-
+  printStatus("Generating reverse.");
   generateRandomArray(&randomArray, arrayLength);
+  printStatus("Generated reverse array.");
 
-  //printArray(randomArray, arrayLength);
-  printf("Generated reverse array.\n");
-
+  printStatus("Starting Selection Sort");
   selectionSort(&randomArray, arrayLength);
-  printf("Selection Sort Completed.\n");
-  generateRandomArray(&randomArray, arrayLength);
-  printf("Generated reverse array.\n");
-  bubbleSort(&randomArray, arrayLength);
-  printf("Bubble Sort Completed.\n");
+  printStatus("Selection Sort Completed.");
 
-  printArray(randomArray, arrayLength);
+  printStatus("Regenerating reversed array.");
+  generateRandomArray(&randomArray, arrayLength);
+  printStatus("Regenerated reverse array.");
+
+  printStatus("Bubble Sorting...");
+  bubbleSort(&randomArray, arrayLength);
+  printStatus("Bubble Sort Completed.");
 
 }
